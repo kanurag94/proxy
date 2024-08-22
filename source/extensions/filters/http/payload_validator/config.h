@@ -84,7 +84,7 @@ public:
   json_validator& getValidator() { return validator_; }
 
   bool
-  processConfig(const envoy::extensions::filters::http::payload_validator::v3::PayloadValidator&
+  processConfig(const istio::envoy::config::filter::http::payload_validator::v3alpha1::PayloadValidator&
                     proto_config);
   const std::shared_ptr<Operation> getOperation(const std::string& name) const;
   std::shared_ptr<PayloadValidatorStats> stats() const { return stats_; }
@@ -109,13 +109,13 @@ public:
 
 class FilterConfigFactory
     : public Common::FactoryBase<
-          envoy::extensions::filters::http::payload_validator::v3::PayloadValidator> {
+          istio::envoy::config::filter::http::payload_validator::v3alpha1::PayloadValidator> {
 public:
   FilterConfigFactory() : FactoryBase("envoy.filters.http.payload_validator") {}
 
 private:
   Http::FilterFactoryCb createFilterFactoryFromProtoTyped(
-      const envoy::extensions::filters::http::payload_validator::v3::PayloadValidator& proto_config,
+      const istio::envoy::config::filter::http::payload_validator::v3alpha1::PayloadValidator& proto_config,
       const std::string& stats_prefix, Server::Configuration::FactoryContext& context) override;
 };
 

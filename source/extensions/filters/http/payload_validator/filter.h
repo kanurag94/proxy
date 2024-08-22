@@ -16,9 +16,9 @@ namespace PayloadValidator {
 /**
  */
 class Filter : public Http::StreamFilter,
-public Logger::Loggable<Logger::Id::payload_validator> {
+public Logger::Loggable<Logger::Id::golang> { // TODO(kanurag94): Change this back to PayloadValidator after adding enum
 public:
-  Filter(istio::envoy::config::filter::http::payload_validator::v3alpha1::FilterConfig& config) : config_(config) {}
+  Filter(FilterConfig& config) : config_(config) {}
   // Http::StreamFilterBase
   void onDestroy() override {}
 
@@ -48,7 +48,7 @@ public:
   std::shared_ptr<PayloadValidatorStats> stats() const { return config_.stats(); }
 
 private:
-  istio::envoy::config::filter::http::payload_validator::v3alpha1::FilterConfig& config_;
+  FilterConfig& config_;
 
   std::shared_ptr<Operation> current_operation_;
   std::shared_ptr<PayloadDescription> response_validator_;

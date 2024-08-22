@@ -1,3 +1,9 @@
+
+load(
+    "@envoy_api//bazel:api_build_system.bzl",
+    "api_proto_package",
+)
+
 load(
     "@envoy//bazel:envoy_build_system.bzl",
     "envoy_cc_library",
@@ -19,7 +25,7 @@ envoy_cc_library(
     ],
     repository = "@envoy",
     deps = [
-        ":config_cc_proto",
+        ":pkg_cc_proto",
         "@json_schema_validator//:json_schema_validator",
         "@envoy//envoy/http:filter_interface",
         "@envoy//envoy/runtime:runtime_interface",
@@ -30,12 +36,9 @@ envoy_cc_library(
     ],
 )
 
-cc_proto_library(
-    name = "config_cc_proto",
-    deps = ["config"],
-)
-
-proto_library(
-    name = "config",
-    srcs = ["config.proto"],
+api_proto_package(
+    deps = [
+        "@envoy_api//envoy/config/core/v3:pkg",
+        "@envoy_api//envoy/type:pkg",
+    ]
 )

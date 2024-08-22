@@ -1,12 +1,13 @@
+#include "source/extensions/filters/http/payload_validator/config.h"
+
 #include <string>
 
 #include "envoy/registry/registry.h"
 
-#include "source/extensions/filters/http/payload_validator/config.h"
+#include "source/extensions/filters/http/payload_validator/config.pb.validate.h"
 #include "source/extensions/filters/http/payload_validator/filter.h"
 
 using nlohmann::json;
-using istio::envoy::config::filter::http::payload_validator::v3alpha1::FilterConfig;
 
 namespace Envoy {
 namespace Extensions {
@@ -69,7 +70,7 @@ JSONPayloadDescription::validate(const Buffer::Instance& data) {
 }
 
 bool FilterConfig::processConfig(
-    const envoy::extensions::filters::http::payload_validator::v3::PayloadValidator& config) {
+    const istio::envoy::config::filter::http::payload_validator::v3alpha1::PayloadValidator& config) {
   // bool request_found = false;
   // bool response_found = false;
 
@@ -143,7 +144,7 @@ const std::shared_ptr<Operation> FilterConfig::getOperation(const std::string& n
 }
 
 Http::FilterFactoryCb FilterConfigFactory::createFilterFactoryFromProtoTyped(
-    const envoy::extensions::filters::http::payload_validator::v3::PayloadValidator& config,
+    const istio::envoy::config::filter::http::payload_validator::v3alpha1::PayloadValidator& config,
     const std::string& stats_prefix, Server::Configuration::FactoryContext& context) {
 
   std::cerr << stats_prefix << "\n";
