@@ -9,8 +9,10 @@
 //#include "envoy/stats/stats.h"
 #include "envoy/stats/stats_macros.h"
 
-#include "source/extensions/filters/http/payload_validator/config.pb.h"
 #include "source/extensions/filters/http/common/factory_base.h"
+
+#include "source/extensions/filters/http/payload_validator/config.pb.h"
+#include "source/extensions/filters/http/payload_validator/config.pb.validate.h"
 
 using nlohmann::json_schema::json_validator;
 
