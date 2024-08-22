@@ -17,7 +17,7 @@
 workspace(name = "io_istio_proxy")
 
 # http_archive is not a native function since bazel 0.19
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 
 # 1. Determine SHA256 `wget https://github.com/envoyproxy/envoy/archive/$COMMIT.tar.gz && sha256sum $COMMIT.tar.gz`
 # 2. Update .bazelversion, envoy.bazelrc and .bazelrc if needed.
@@ -38,6 +38,36 @@ http_archive(
     sha256 = ENVOY_SHA256,
     strip_prefix = ENVOY_REPO + "-" + ENVOY_SHA,
     url = "https://github.com/" + ENVOY_ORG + "/" + ENVOY_REPO + "/archive/" + ENVOY_SHA + ".tar.gz",
+)
+
+http_archive(
+    name = "json_schema_validator",
+    urls = ["https://github.com/pboettch/json-schema-validator/archive/refs/tags/2.1.0.tar.gz"],
+    strip_prefix = "json-schema-validator-2.1.0",
+    build_file_content = """
+cc_library(
+    name = "json_schema_validator",
+    srcs = glob(["src/*.cpp"]),
+    hdrs = glob(["src/*.hpp", "src/*.h", "src/nlohmann/*.hpp"]),
+    includes = ["src"],
+    deps = ["@nlohmann_json//:json"],
+    visibility = ["//visibility:public"],
+)
+    """,
+)
+
+http_archive(
+    name = "nlohmann_json",
+    urls = ["https://github.com/nlohmann/json/archive/refs/tags/v3.11.2.tar.gz"],
+    strip_prefix = "json-3.11.2",
+    build_file_content = """
+cc_library(
+    name = "json",
+    hdrs = glob(["single_include/nlohmann/*.hpp"]),
+    includes = ["single_include"],
+    visibility = ["//visibility:public"],
+)
+    """,
 )
 
 load("@envoy//bazel:api_binding.bzl", "envoy_api_binding")

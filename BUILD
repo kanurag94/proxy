@@ -33,6 +33,7 @@ config_setting(
 ISTIO_EXTENSIONS = [
     "//source/extensions/common/workload_discovery:api_lib",  # Experimental: WIP
     "//source/extensions/filters/http/alpn:config_lib",
+    "//source/extensions/filters/http/payload_validator:config_lib",
     "//source/extensions/filters/http/istio_stats",
     "//source/extensions/filters/http/peer_metadata:filter_lib",
     "//source/extensions/filters/network/metadata_exchange:config_lib",
