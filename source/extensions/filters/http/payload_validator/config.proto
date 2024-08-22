@@ -7,9 +7,14 @@ import "envoy/type/http_status.proto";
 
 import "google/protobuf/wrappers.proto";
 
+import "udpa/annotations/status.proto";
 import "validate/validate.proto";
 
+option java_package = "io.envoyproxy.envoy.extensions.filters.http.payload_validator.v3";
+option java_outer_classname = "PayloadValidatorProto";
+option java_multiple_files = true;
 option go_package = "istio.io/api/envoy/config/filter/http/payloadvalidator/v3alpha1";
+option (udpa.annotations.file_status).package_version_status = ACTIVE;
 
 // [#protodoc-title: Payload Validator]
 

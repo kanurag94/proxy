@@ -40,5 +40,6 @@ api_proto_package(
     deps = [
         "@envoy_api//envoy/config/core/v3:pkg",
         "@envoy_api//envoy/type:pkg",
+        "@com_github_cncf_xds//udpa/annotations:pkg"
     ]
 )

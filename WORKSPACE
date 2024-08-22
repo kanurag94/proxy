@@ -70,6 +70,13 @@ cc_library(
     """,
 )
 
+http_archive(
+    name = "com_github_cncf_xds",
+    urls = ["https://github.com/cncf/xds/archive/555b57ec207be86f811fb0c04752db6f85e3d7e2.tar.gz"],
+    strip_prefix = "xds-555b57ec207be86f811fb0c04752db6f85e3d7e2",
+    sha256 = "0c8c4f0f67fed967b51049f7d5e2ca7a9bd433970a29c88e272c8665328172f5",
+)
+
 load("@envoy//bazel:api_binding.bzl", "envoy_api_binding")
 
 local_repository(
