@@ -456,6 +456,7 @@ ENVOY_CONTRIB_EXTENSIONS = {
     # HTTP filters
     #
 
+    "envoy.filters.http.payload_validator":                     "//contrib/payload_validator/filters/http/source:payload_validator_filter_lib",
     "envoy.filters.http.dynamo":                                "//contrib/dynamo/filters/http/dynamo:config",
     "envoy.filters.http.golang":                                "//contrib/golang/filters/http/source:config",
     "envoy.filters.http.squash":                                "//contrib/squash/filters/http/source:config",
@@ -507,6 +508,7 @@ ISTIO_DISABLED_EXTENSIONS = [
 ]
 
 ISTIO_ENABLED_CONTRIB_EXTENSIONS = [
+    "envoy.filters.http.payload_validator",
     "envoy.filters.http.golang",
     "envoy.filters.network.golang",
     "envoy.filters.network.mysql_proxy",
